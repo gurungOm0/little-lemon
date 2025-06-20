@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -41,12 +42,20 @@ android {
 }
 
 dependencies {
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.glide.glide)
+    ksp(libs.glide.compiler)
+    implementation(libs.compose)
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
+    implementation(libs.ktor.client.android)
     implementation(libs.room.ktx)
     implementation(libs.ktor.core)
     implementation(libs.ktor.cio)
     implementation(libs.ktor.serialization)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.coroutines.android)
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.serialization.json)

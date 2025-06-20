@@ -1,15 +1,22 @@
 package com.example.littlelemon
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
+
+
+@SuppressLint("ViewModelConstructorInComposable")
 @Composable
-fun NavigationComposable(sharedPreferences: SharedPreferences) {
+fun NavigationComposable(sharedPreferences: SharedPreferences,dbFetch:List<MenuItem>) {
 
     val context = LocalContext.current
     val sharedPref = context.getSharedPreferences("SharedPref",Context.MODE_PRIVATE)
@@ -20,7 +27,7 @@ fun NavigationComposable(sharedPreferences: SharedPreferences) {
     NavHost(navController = navController, startDestination = startDes) {
 
         composable(HomeDes.route){
-            Home(navController)
+            Home(navController,dbFetch)
         }
 
         composable(OnboardingDes.route){

@@ -4,11 +4,11 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.Toast
-import androidx.activity.ComponentActivity.MODE_PRIVATE
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,17 +30,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.edit
 import androidx.navigation.NavHostController
+import com.example.littlelemon.ui.theme.Green1
 import com.example.littlelemon.ui.theme.MarkaziTextFontFamily
 import com.example.littlelemon.ui.theme.KarlaTextFontFamily
 
@@ -62,7 +63,7 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
     val context = LocalContext.current
 
 
-    Column(modifier = Modifier.statusBarsPadding()) {
+    Column(modifier = Modifier.statusBarsPadding().fillMaxHeight()) {
         Header()
         Box(
             Modifier
@@ -80,7 +81,8 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
         }
         Column(
             modifier = Modifier
-                .padding(horizontal = 15.dp)
+                .padding(horizontal = 15.dp).fillMaxHeight()
+            , verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 "Personal Information",
@@ -88,17 +90,15 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
                 fontFamily = KarlaTextFontFamily,
                 fontWeight = FontWeight.ExtraBold,
                 modifier = Modifier
-                    .padding(vertical = 45.dp)
+                    .padding(vertical = 40.dp)
             )
             Column(
                 modifier = Modifier.fillMaxHeight(),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-
                 Column(
                     modifier = Modifier
                         .padding(top = 15.dp)
-                        .fillMaxHeight(0.6f)
                 ) {
 
                     Text(
@@ -112,17 +112,23 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
                         onValueChange = { value ->
                             fName = value
                         },
+                        maxLines = 1,
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = Color.White,
-                            unfocusedContainerColor = Color.White
+                            unfocusedContainerColor = Color.White,
+                            focusedTextColor = Green1,
+                            unfocusedTextColor = Green1,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent
                         ),
                         textStyle = TextStyle(
-                            fontSize = 17.sp
+                            fontSize = 20.sp
                         ),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 25.dp)
+                            .padding(bottom = 10.dp)
                             .border(0.5.dp, Color.Black, RoundedCornerShape(10.dp))
+                            .clip(RoundedCornerShape(10.dp))
                     )
 
                     Text(
@@ -137,17 +143,23 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
                         onValueChange = { value ->
                             lName = value
                         },
+                        maxLines = 1,
                         textStyle = TextStyle(
-                            fontSize = 17.sp
+                            fontSize = 20.sp
                         ),
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = Color.White,
-                            unfocusedContainerColor = Color.White
+                            unfocusedContainerColor = Color.White,
+                            focusedTextColor = Green1,
+                            unfocusedTextColor = Green1,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent
                         ),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 25.dp)
+                            .padding(bottom = 10.dp)
                             .border(0.5.dp, Color.Black, RoundedCornerShape(10.dp))
+                            .clip(RoundedCornerShape(10.dp))
                     )
 
                     Text(
@@ -161,16 +173,22 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
                         onValueChange = { value ->
                             eMail = value
                         },
+                        maxLines = 1,
                         textStyle = TextStyle(
-                            fontSize = 17.sp
+                            fontSize = 20.sp
                         ),
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = Color.White,
-                            unfocusedContainerColor = Color.White
+                            unfocusedContainerColor = Color.White,
+                            focusedTextColor = Green1,
+                            unfocusedTextColor = Green1,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent
                         ),
                         modifier = Modifier
                             .fillMaxWidth()
                             .border(0.5.dp, Color.Black, RoundedCornerShape(10.dp))
+                            .clip(RoundedCornerShape(10.dp))
                     )
                 }
 
@@ -198,7 +216,7 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
 //                    enabled = fName!="" && lName!="" && eMail!="",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 15.dp, bottom = 30.dp)
+                        .padding(bottom = 45.dp)
                 ) {
                     Text(
                         "Register",
