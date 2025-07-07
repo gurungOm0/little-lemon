@@ -1,4 +1,4 @@
-package com.example.littlelemon
+package com.example.littlelemon.screens.profile
 
 import android.content.Context
 import android.widget.Toast
@@ -24,19 +24,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.littlelemon.models.UserProfile
+import com.example.littlelemon.navigation.OnboardingDes
+import com.example.littlelemon.screens.onboarding.Header
 import com.example.littlelemon.ui.theme.KarlaTextFontFamily
 
 
-
 @Composable
-fun Profile(navHostController: NavHostController) {
+fun Profile(navHostController: NavHostController,profile: UserProfile,logout:()->Unit) {
     val context = LocalContext.current
-    val sharedPreferences = context.getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
-    val fName = sharedPreferences.getString("firstName", "").toString()
-    val lName = sharedPreferences.getString("lastName", "").toString()
-    val email = sharedPreferences.getString("email", "").toString()
 
-    val editor = sharedPreferences.edit()
 
     Column(
         modifier = Modifier
@@ -64,7 +61,7 @@ fun Profile(navHostController: NavHostController) {
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Text(
-                        fName,
+                        profile.fName,
                         fontSize = 20.sp,
                         fontFamily = KarlaTextFontFamily,
                         modifier = Modifier
@@ -79,7 +76,7 @@ fun Profile(navHostController: NavHostController) {
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Text(
-                        lName, fontSize = 20.sp, fontFamily = KarlaTextFontFamily,
+                        profile.lName, fontSize = 20.sp, fontFamily = KarlaTextFontFamily,
                         modifier = Modifier
                             .border(0.5.dp, Color.Black, RoundedCornerShape(5.dp))
                             .size(height = 25.dp, width = 200.dp)
@@ -93,7 +90,7 @@ fun Profile(navHostController: NavHostController) {
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Text(
-                        email, fontFamily = KarlaTextFontFamily, fontSize = 20.sp,
+                        profile.email, fontFamily = KarlaTextFontFamily, fontSize = 20.sp,
                         modifier = Modifier
                             .border(0.5.dp, Color.Black, RoundedCornerShape(5.dp))
                             .size(height = 25.dp, width = 200.dp)
@@ -103,8 +100,7 @@ fun Profile(navHostController: NavHostController) {
         }
         Button(
             {
-                editor.clear()
-                editor.apply()
+                logout()
                 Toast.makeText(context,"You have been logged out !",Toast.LENGTH_SHORT).show()
                 navHostController.navigate(OnboardingDes.route)
             }, colors = ButtonDefaults.buttonColors(Color(0xFFf4ce14)),

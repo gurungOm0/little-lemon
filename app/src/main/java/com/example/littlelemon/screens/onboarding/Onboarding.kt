@@ -1,4 +1,4 @@
-package com.example.littlelemon
+package com.example.littlelemon.screens.onboarding
 
 import android.app.AlertDialog
 import android.content.Context
@@ -8,7 +8,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,24 +40,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.edit
 import androidx.navigation.NavHostController
+import com.example.littlelemon.navigation.HomeDes
+import com.example.littlelemon.R
 import com.example.littlelemon.ui.theme.Green1
-import com.example.littlelemon.ui.theme.MarkaziTextFontFamily
 import com.example.littlelemon.ui.theme.KarlaTextFontFamily
 
 
 @Composable
-fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPreferences) {
-
-    var fName by remember {
-        mutableStateOf("")
-    }
-    var lName by remember {
-        mutableStateOf("")
-    }
-    var eMail by remember {
-        mutableStateOf("")
-    }
-
+fun Onboarding(navHostController: NavHostController, fName: String, lName: String, email: String, onfNameChange:()-> Unit,onlNameChange:()-> Unit,onEmailChange:()-> Unit,submit:()-> Unit) {
 
     val context = LocalContext.current
 
@@ -109,9 +98,7 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
                     )
                     TextField(
                         value = fName,
-                        onValueChange = { value ->
-                            fName = value
-                        },
+                        onValueChange = {onfNameChange},
                         maxLines = 1,
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = Color.White,
@@ -140,9 +127,7 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
 
                     TextField(
                         value = lName,
-                        onValueChange = { value ->
-                            lName = value
-                        },
+                        onValueChange = { onlNameChange },
                         maxLines = 1,
                         textStyle = TextStyle(
                             fontSize = 20.sp
@@ -169,10 +154,8 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
                         modifier = Modifier.padding(bottom = 10.dp)
                     )
                     TextField(
-                        value = eMail,
-                        onValueChange = { value ->
-                            eMail = value
-                        },
+                        value = email,
+                        onValueChange = { onEmailChange },
                         maxLines = 1,
                         textStyle = TextStyle(
                             fontSize = 20.sp
@@ -194,19 +177,14 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
 
                 Button(
                     {
-                        if (fName.isBlank() && lName.isBlank() && eMail.isBlank()) {
+                        if (fName.isBlank() && lName.isBlank() && email.isBlank()) {
                             Toast.makeText(
                                 context,
                                 "Registration Unsuccessful !",
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            sharedPreferences.edit(commit = true) {
-                                putString("firstName", fName)
-                                putString("lastName", lName)
-                                putString("email", eMail)
-                                putBoolean("userLogged", true)
-                            }
+                            submit()
                             navHostController.navigate(HomeDes.route)
                         }
                     },
