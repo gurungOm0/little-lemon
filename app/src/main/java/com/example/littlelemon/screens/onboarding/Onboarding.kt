@@ -2,7 +2,6 @@ package com.example.littlelemon.screens.onboarding
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.SharedPreferences
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -23,10 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,7 +33,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.edit
 import androidx.navigation.NavHostController
 import com.example.littlelemon.navigation.HomeDes
 import com.example.littlelemon.R
@@ -47,7 +41,7 @@ import com.example.littlelemon.ui.theme.KarlaTextFontFamily
 
 
 @Composable
-fun Onboarding(navHostController: NavHostController, fName: String, lName: String, email: String, onfNameChange:()-> Unit,onlNameChange:()-> Unit,onEmailChange:()-> Unit,submit:()-> Unit) {
+fun Onboarding(navHostController: NavHostController,viewModel: OnBoardingViewModel) {
 
     val context = LocalContext.current
 
@@ -97,8 +91,8 @@ fun Onboarding(navHostController: NavHostController, fName: String, lName: Strin
                         modifier = Modifier.padding(bottom = 10.dp)
                     )
                     TextField(
-                        value = fName,
-                        onValueChange = {onfNameChange},
+                        value = viewModel.fName,
+                        onValueChange = {viewModel.fName = it},
                         maxLines = 1,
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = Color.White,
@@ -126,8 +120,8 @@ fun Onboarding(navHostController: NavHostController, fName: String, lName: Strin
                     )
 
                     TextField(
-                        value = lName,
-                        onValueChange = { onlNameChange },
+                        value = viewModel.lName,
+                        onValueChange = { viewModel.lName = it },
                         maxLines = 1,
                         textStyle = TextStyle(
                             fontSize = 20.sp
@@ -154,8 +148,8 @@ fun Onboarding(navHostController: NavHostController, fName: String, lName: Strin
                         modifier = Modifier.padding(bottom = 10.dp)
                     )
                     TextField(
-                        value = email,
-                        onValueChange = { onEmailChange },
+                        value = viewModel.email,
+                        onValueChange = { viewModel.email = it },
                         maxLines = 1,
                         textStyle = TextStyle(
                             fontSize = 20.sp
@@ -177,14 +171,14 @@ fun Onboarding(navHostController: NavHostController, fName: String, lName: Strin
 
                 Button(
                     {
-                        if (fName.isBlank() && lName.isBlank() && email.isBlank()) {
+                        if (viewModel.fName.isBlank() && viewModel.lName.isBlank() && viewModel.email.isBlank()) {
                             Toast.makeText(
                                 context,
                                 "Registration Unsuccessful !",
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            submit()
+                            viewModel.submit()
                             navHostController.navigate(HomeDes.route)
                         }
                     },

@@ -10,7 +10,7 @@ import androidx.room.Query
 @Dao
 interface MenuDao{
     @Query("SELECT * FROM MenuItem")
-    fun getAllItems():LiveData<List<MenuItem>>
+    fun getAllItems():LiveData<List<MenuItem>>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveMenuItemList(menuItem: List<MenuItem>)

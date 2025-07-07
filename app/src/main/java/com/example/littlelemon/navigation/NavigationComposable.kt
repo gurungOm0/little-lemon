@@ -33,19 +33,19 @@ fun NavigationComposable() {
 
         composable(HomeDes.route) {
             val vm: HomeViewModel = hiltViewModel()
-            Home(navController, vm.items)
+            vm.load()
+            Home(navController, vm.items!!)
         }
 
         composable(OnboardingDes.route) {
             val vm: OnBoardingViewModel = hiltViewModel()
-            Onboarding(navController, vm.fName,vm.lName,vm.email,{vm.fName = it.toString()},{vm.lName = it.toString()},{ vm.email = it.toString() },
-                { vm.submit() })
+            Onboarding(navController, vm)
         }
 
         composable(ProfileDes.route) {
             val vm: ProfileViewModel = hiltViewModel()
             LaunchedEffect(Unit) { vm.load() }
-            Profile(navController,vm.profile!!) { vm.logout() }
+            Profile(navController,vm.profile) { vm.logout() }
         }
     }
 }

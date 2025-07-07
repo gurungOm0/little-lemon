@@ -15,7 +15,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val repo: AppRepository
 ): ViewModel() {
-    var profile by mutableStateOf<UserProfile?>(null)
+    var profile by mutableStateOf(UserProfile("","",""))
     fun load(){
         viewModelScope.launch {
             profile = repo.sharedPrefGetUserData()

@@ -1,5 +1,6 @@
 package com.example.littlelemon.di
 
+import android.util.Log
 import com.example.littlelemon.data.remote.RemoteDataSource
 import com.example.littlelemon.data.remote.RemoteDataSourceImpl
 import dagger.Module
@@ -18,7 +19,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule{
-    @Provides @Singleton
+    @Provides @Singleton @Named("baseUrl")
     fun provideBaseUrl() = "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json"
 
     @Provides @Singleton

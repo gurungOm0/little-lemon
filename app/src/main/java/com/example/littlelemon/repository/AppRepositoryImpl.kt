@@ -13,22 +13,24 @@ class AppRepositoryImpl @Inject constructor(
     private val remote: RemoteDataSourceImpl,
     private val dao: MenuDao,
     private val userPrefs: UserPrefDataImpl
-): AppRepository{
+) : AppRepository {
 
-    override suspend fun fetchAndSave(): List<MenuItem> {
+    override suspend fun fetchAndSave() {
         val items = remote.fetchData()
         val finalData = items.map { it.toMenuItemRoom() }
         dao.saveMenuItemList(finalData)
+    }
+
+    override suspend fun readFetched(): List<MenuItem>? {
+        val items = remote.fetchData()
+        val finalData = items.map { it.toMenuItemRoom() }
         return finalData
     }
 
-    override suspend fun readFetched(): List<MenuItem> {
-        val finalData = dao.getAllItems().value!!
-        return finalData
-    }
-
-    override suspend fun dbFetch(): List<MenuItem> {
-        return dao.getAllItems().value!!
+    override suspend fun dbFetch(): List<MenuItem>? {
+        if (dao.isEmpty()) {
+            return dao.getAllItems()?.value
+        }else return emptyList()
     }
 
     override suspend fun sharedPrefSaveUserData(profile: UserProfile) {

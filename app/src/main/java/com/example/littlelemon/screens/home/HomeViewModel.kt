@@ -16,7 +16,7 @@ import kotlin.math.log
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repo: AppRepository): ViewModel() {
-    var items by mutableStateOf<List<MenuItem>>(emptyList())
+    var items by mutableStateOf<List<MenuItem>?>(emptyList())
     fun load(){
         viewModelScope.launch {
             items = try {
