@@ -64,7 +64,7 @@ Accessible via an icon on the Home Screen, this screen displays the user's regis
 
 To run this project locally, ensure you have Android Studio installed. Then, clone the repository and open it. Ensure you have the latest Android SDK and Kotlin plugin installed.
 
-git clone https://github.com/gurungOm0/LittleLemon.git  
+git clone https://github.com/gurungOm0/little-lemon.git  
 cd LittleLemon
 
 ## **🚀 Future Enhancements**
