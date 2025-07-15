@@ -2,4 +2,10 @@
 <resources>
 
     <style name="Theme.LittleLemon" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.LittleLemon.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_splash_screen</item>
+        <item name="postSplashScreenTheme">@style/Theme.LittleLemon</item>
+    </style>
 </resources>

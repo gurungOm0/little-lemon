@@ -3,6 +3,7 @@ package com.example.littlelemon.navigation
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
@@ -24,7 +25,7 @@ import com.example.littlelemon.screens.profile.ProfileViewModel
 fun NavigationComposable() {
 
     val context = LocalContext.current
-    val sharedPref = context.getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
+    val sharedPref = context.getSharedPreferences("Profile", Context.MODE_PRIVATE)
     val userLoggedIn = sharedPref.getBoolean("userLogged", false)
     val startDes = if (userLoggedIn) HomeDes.route else OnboardingDes.route
 
@@ -45,7 +46,7 @@ fun NavigationComposable() {
         composable(ProfileDes.route) {
             val vm: ProfileViewModel = hiltViewModel()
             LaunchedEffect(Unit) { vm.load() }
-            Profile(navController,vm.profile) { vm.logout() }
+            Profile(navController,vm)
         }
     }
 }

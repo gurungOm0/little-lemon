@@ -31,4 +31,8 @@ class UserPrefDataImpl @Inject constructor(
     override suspend fun clearUser() {
         sharedPreferences.edit { clear().apply() }
     }
+
+    override suspend fun userLogged() {
+        sharedPreferences.edit{ putBoolean("userLogged",true) }
+    }
 }

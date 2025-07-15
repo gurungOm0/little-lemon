@@ -44,6 +44,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.material3.windowsize)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)

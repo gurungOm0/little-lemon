@@ -3,7 +3,6 @@ package com.example.littlelemon.screens.home
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -12,13 +11,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -46,13 +45,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
+import coil.compose.AsyncImage
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
 import com.example.littlelemon.ui.theme.Green1
 import com.example.littlelemon.ui.theme.KarlaTextFontFamily
 import com.example.littlelemon.ui.theme.MarkaziTextFontFamily
 import com.example.littlelemon.ui.theme.Yellow1
-import com.bumptech.glide.integration.compose.placeholder
 import com.example.littlelemon.navigation.ProfileDes
 import com.example.littlelemon.R
 import com.example.littlelemon.data.local.MenuItem
@@ -63,7 +61,7 @@ import com.example.littlelemon.ui.theme.LightGrey
 fun Home(navHostController: NavHostController, menuList: List<MenuItem>) {
     Column(
         modifier = Modifier
-            .statusBarsPadding()
+            .padding(androidx.compose.foundation.layout.WindowInsets.systemBars.asPaddingValues())
             .fillMaxHeight()
     ) {
         HomeHeader(navHostController)
@@ -187,6 +185,7 @@ fun Searcher(menuList: List<MenuItem>) {
                 value = searchChar,
                 onValueChange = { searchChar = it },
                 maxLines = 1,
+                singleLine = true,
                 placeholder = { Text("Enter search phrase!") },
                 textStyle = TextStyle(fontFamily = KarlaTextFontFamily, fontSize = 20.sp),
                 colors = TextFieldDefaults.colors(
@@ -218,7 +217,7 @@ fun CategorySelector(menuList: List<MenuItem>) {
     Column {
         Text(
             "ORDER FOR DELIVERY!", fontSize = 20.sp,
-            modifier = Modifier.padding(vertical = 15.dp, horizontal = 20.dp)
+            modifier = Modifier.padding(top = 10.dp, bottom = 5.dp, start = 20.dp, end = 20.dp)
         )
         Row(
             modifier = Modifier
@@ -334,8 +333,8 @@ fun MenuItems(menuItems: MenuItem) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
-            modifier = Modifier,
-            verticalArrangement = Arrangement.SpaceBetween
+            modifier = Modifier.width(220.dp),
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
                 menuItems.title,
@@ -358,10 +357,10 @@ fun MenuItems(menuItems: MenuItem) {
         }
         Box(
             modifier = Modifier
-                .size(width = 90.dp, height = 90.dp)
-                .border(width = 0.5.dp, color = Green1)
+                .size(width = 80.dp, height = 80.dp)
+                .background(color = Green1)
         ) {
-            GlideImage(
+            /*GlideImage(
                 model = menuItems.image,
                 contentDescription = menuItems.title,
                 contentScale = ContentScale.Fit,
@@ -370,6 +369,12 @@ fun MenuItems(menuItems: MenuItem) {
                 modifier = Modifier
                     .size(100.dp)
                     .fillMaxSize()
+            )*/
+            AsyncImage(
+                model = menuItems.image,
+                contentDescription = menuItems.title,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.size(80.dp)
             )
         }
     }

@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.littlelemon.data.sharedprefs.UserPrefData
 import com.example.littlelemon.models.UserProfile
 import com.example.littlelemon.repository.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OnBoardingViewModel @Inject constructor(
-    private val repo: AppRepository
+    private val repo: AppRepository,
+    private val userPref: UserPrefData
 ): ViewModel(){
     var fName by mutableStateOf("")
     var lName by mutableStateOf("")
@@ -22,6 +24,7 @@ class OnBoardingViewModel @Inject constructor(
     fun submit(){
         viewModelScope.launch {
             repo.sharedPrefSaveUserData(UserProfile(fName,lName,email))
+            repo.isUserLogged()
         }
     }
 }

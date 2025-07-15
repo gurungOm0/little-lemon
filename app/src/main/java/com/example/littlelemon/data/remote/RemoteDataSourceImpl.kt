@@ -13,7 +13,7 @@ class RemoteDataSourceImpl @Inject constructor(
     @Named("baseUrl") private val baseUrl: String
 ) : RemoteDataSource {
     override suspend fun fetchData(): List<MenuItemNetwork> {
-        val data: MenuNetworkData = client.get("https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json").body()
+        val data: MenuNetworkData = client.get(baseUrl).body()
         return data.menu
     }
 }

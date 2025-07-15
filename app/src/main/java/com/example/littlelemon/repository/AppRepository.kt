@@ -10,4 +10,5 @@ interface AppRepository {
     suspend fun sharedPrefSaveUserData(profile: UserProfile)
     suspend fun sharedPrefGetUserData(): UserProfile
     suspend fun sharedPrefClearData()
+    suspend fun isUserLogged()
 }

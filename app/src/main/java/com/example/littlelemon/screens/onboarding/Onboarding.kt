@@ -1,5 +1,6 @@
 package com.example.littlelemon.screens.onboarding
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.widget.Toast
@@ -10,17 +11,20 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,14 +43,16 @@ import com.example.littlelemon.R
 import com.example.littlelemon.ui.theme.Green1
 import com.example.littlelemon.ui.theme.KarlaTextFontFamily
 
-
 @Composable
-fun Onboarding(navHostController: NavHostController,viewModel: OnBoardingViewModel) {
+fun Onboarding(navHostController: NavHostController, viewModel: OnBoardingViewModel) {
 
     val context = LocalContext.current
 
-
-    Column(modifier = Modifier.statusBarsPadding().fillMaxHeight()) {
+    Column(
+        modifier = Modifier
+            .padding(androidx.compose.foundation.layout.WindowInsets.systemBars.asPaddingValues())
+            .fillMaxHeight()
+    ) {
         Header()
         Box(
             Modifier
@@ -64,8 +70,9 @@ fun Onboarding(navHostController: NavHostController,viewModel: OnBoardingViewMod
         }
         Column(
             modifier = Modifier
-                .padding(horizontal = 15.dp).fillMaxHeight()
-            , verticalArrangement = Arrangement.SpaceBetween
+                .padding(horizontal = 15.dp)
+                .fillMaxHeight(),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 "Personal Information",
@@ -92,8 +99,9 @@ fun Onboarding(navHostController: NavHostController,viewModel: OnBoardingViewMod
                     )
                     TextField(
                         value = viewModel.fName,
-                        onValueChange = {viewModel.fName = it},
+                        onValueChange = { viewModel.fName = it },
                         maxLines = 1,
+                        singleLine = true,
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = Color.White,
                             unfocusedContainerColor = Color.White,
@@ -123,6 +131,7 @@ fun Onboarding(navHostController: NavHostController,viewModel: OnBoardingViewMod
                         value = viewModel.lName,
                         onValueChange = { viewModel.lName = it },
                         maxLines = 1,
+                        singleLine = true,
                         textStyle = TextStyle(
                             fontSize = 20.sp
                         ),
@@ -151,6 +160,7 @@ fun Onboarding(navHostController: NavHostController,viewModel: OnBoardingViewMod
                         value = viewModel.email,
                         onValueChange = { viewModel.email = it },
                         maxLines = 1,
+                        singleLine = true,
                         textStyle = TextStyle(
                             fontSize = 20.sp
                         ),
@@ -205,7 +215,7 @@ fun Onboarding(navHostController: NavHostController,viewModel: OnBoardingViewMod
 }
 
 @Composable
-fun showRegistrationFailedDialog(context: Context) {
+fun ShowRegistrationFailedDialog(context: Context) {
     AlertDialog.Builder(context)
         .setTitle("Registration Failed")
         .setMessage("Please try again.")

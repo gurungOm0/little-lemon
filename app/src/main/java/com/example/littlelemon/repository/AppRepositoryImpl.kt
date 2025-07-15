@@ -4,7 +4,7 @@ package com.example.littlelemon.repository
 import com.example.littlelemon.data.local.MenuDao
 import com.example.littlelemon.data.local.MenuItem
 import com.example.littlelemon.data.remote.RemoteDataSourceImpl
-import com.example.littlelemon.data.sharedprefs.UserPrefDataImpl
+import com.example.littlelemon.data.sharedprefs.UserPrefData
 import com.example.littlelemon.models.UserProfile
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class AppRepositoryImpl @Inject constructor(
     private val remote: RemoteDataSourceImpl,
     private val dao: MenuDao,
-    private val userPrefs: UserPrefDataImpl
+    private val userPrefs: UserPrefData
 ) : AppRepository {
 
     override suspend fun fetchAndSave() {
@@ -28,9 +28,9 @@ class AppRepositoryImpl @Inject constructor(
     }
 
     override suspend fun dbFetch(): List<MenuItem>? {
-        if (dao.isEmpty()) {
-            return dao.getAllItems()?.value
-        }else return emptyList()
+        return if (dao.isEmpty()) {
+            dao.getAllItems()?.value
+        }else emptyList()
     }
 
     override suspend fun sharedPrefSaveUserData(profile: UserProfile) {
@@ -43,6 +43,10 @@ class AppRepositoryImpl @Inject constructor(
 
     override suspend fun sharedPrefClearData() {
         userPrefs.clearUser()
+    }
+
+    override suspend fun isUserLogged() {
+        userPrefs.userLogged()
     }
 }
 

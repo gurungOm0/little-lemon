@@ -6,4 +6,5 @@ interface UserPrefData {
     suspend fun saveUser(profile: UserProfile)
     suspend fun getUser(): UserProfile?
     suspend fun clearUser()
+    suspend fun userLogged()
 }

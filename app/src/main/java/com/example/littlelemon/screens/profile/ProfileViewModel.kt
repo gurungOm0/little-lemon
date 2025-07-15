@@ -16,6 +16,7 @@ class ProfileViewModel @Inject constructor(
     private val repo: AppRepository
 ): ViewModel() {
     var profile by mutableStateOf(UserProfile("","",""))
+    var alertDialog by mutableStateOf(false)
     fun load(){
         viewModelScope.launch {
             profile = repo.sharedPrefGetUserData()
