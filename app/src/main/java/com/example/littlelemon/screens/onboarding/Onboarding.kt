@@ -1,33 +1,31 @@
-package com.example.littlelemon
+package com.example.littlelemon.screens.onboarding
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.content.SharedPreferences
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,31 +37,22 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.edit
 import androidx.navigation.NavHostController
+import com.example.littlelemon.navigation.HomeDes
+import com.example.littlelemon.R
 import com.example.littlelemon.ui.theme.Green1
-import com.example.littlelemon.ui.theme.MarkaziTextFontFamily
 import com.example.littlelemon.ui.theme.KarlaTextFontFamily
 
-
 @Composable
-fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPreferences) {
-
-    var fName by remember {
-        mutableStateOf("")
-    }
-    var lName by remember {
-        mutableStateOf("")
-    }
-    var eMail by remember {
-        mutableStateOf("")
-    }
-
+fun Onboarding(navHostController: NavHostController, viewModel: OnBoardingViewModel) {
 
     val context = LocalContext.current
 
-
-    Column(modifier = Modifier.statusBarsPadding().fillMaxHeight()) {
+    Column(
+        modifier = Modifier
+            .padding(androidx.compose.foundation.layout.WindowInsets.systemBars.asPaddingValues())
+            .fillMaxHeight()
+    ) {
         Header()
         Box(
             Modifier
@@ -81,8 +70,9 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
         }
         Column(
             modifier = Modifier
-                .padding(horizontal = 15.dp).fillMaxHeight()
-            , verticalArrangement = Arrangement.SpaceBetween
+                .padding(horizontal = 15.dp)
+                .fillMaxHeight(),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 "Personal Information",
@@ -108,11 +98,10 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
                         modifier = Modifier.padding(bottom = 10.dp)
                     )
                     TextField(
-                        value = fName,
-                        onValueChange = { value ->
-                            fName = value
-                        },
+                        value = viewModel.fName,
+                        onValueChange = { viewModel.fName = it },
                         maxLines = 1,
+                        singleLine = true,
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = Color.White,
                             unfocusedContainerColor = Color.White,
@@ -139,11 +128,10 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
                     )
 
                     TextField(
-                        value = lName,
-                        onValueChange = { value ->
-                            lName = value
-                        },
+                        value = viewModel.lName,
+                        onValueChange = { viewModel.lName = it },
                         maxLines = 1,
+                        singleLine = true,
                         textStyle = TextStyle(
                             fontSize = 20.sp
                         ),
@@ -169,11 +157,10 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
                         modifier = Modifier.padding(bottom = 10.dp)
                     )
                     TextField(
-                        value = eMail,
-                        onValueChange = { value ->
-                            eMail = value
-                        },
+                        value = viewModel.email,
+                        onValueChange = { viewModel.email = it },
                         maxLines = 1,
+                        singleLine = true,
                         textStyle = TextStyle(
                             fontSize = 20.sp
                         ),
@@ -194,19 +181,14 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
 
                 Button(
                     {
-                        if (fName.isBlank() && lName.isBlank() && eMail.isBlank()) {
+                        if (viewModel.fName.isBlank() && viewModel.lName.isBlank() && viewModel.email.isBlank()) {
                             Toast.makeText(
                                 context,
                                 "Registration Unsuccessful !",
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            sharedPreferences.edit(commit = true) {
-                                putString("firstName", fName)
-                                putString("lastName", lName)
-                                putString("email", eMail)
-                                putBoolean("userLogged", true)
-                            }
+                            viewModel.submit()
                             navHostController.navigate(HomeDes.route)
                         }
                     },
@@ -233,7 +215,7 @@ fun Onboarding(navHostController: NavHostController, sharedPreferences: SharedPr
 }
 
 @Composable
-fun showRegistrationFailedDialog(context: Context) {
+fun ShowRegistrationFailedDialog(context: Context) {
     AlertDialog.Builder(context)
         .setTitle("Registration Failed")
         .setMessage("Please try again.")

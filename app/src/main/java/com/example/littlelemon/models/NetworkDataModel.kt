@@ -1,5 +1,6 @@
-package com.example.littlelemon
+package com.example.littlelemon.models
 
+import com.example.littlelemon.data.local.MenuItem
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
