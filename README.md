@@ -31,7 +31,10 @@ The application features three main screens, each serving a distinct purpose:
 ### **1\. Onboarding / Login Screen**
 
 Screenshot:
-<img src="./readme_media/onboarding_Screen.jpg" alt="OnBoarding Screen" height="350"/>
+
+<div align="center">
+  <img src="./readme_media/onboarding_Screen.jpg" alt="OnBoarding Screen" height="350"/>
+</div>
 
 The initial screen users encounter. It's designed for new users to register their basic details.
 
@@ -44,7 +47,10 @@ The initial screen users encounter. It's designed for new users to register thei
 ### **2\. Home Screen**
 
 Screenshot:
-<img src="./readme_media/home_Screen.jpg" alt="Home Screen" height="350"/>
+
+<div align="center">
+  <img src="./readme_media/home_Screen.jpg" alt="Home Screen" height="350"/>
+</div>
 
 This is the central hub of the application, displaying information about the Little Lemon restaurant and its menu.
 
@@ -60,7 +66,10 @@ This is the central hub of the application, displaying information about the Lit
 ### **3\. Profile Screen**
 
 Screenshot:
-<img src="./readme_media/profile_Screen.jpg" alt="Profile Screen" height="350"/>
+
+<div align="center">
+  <img src="./readme_media/profile_Screen.jpg" alt="Profile Screen" height="350"/>
+</div>
 
 Accessible via an icon on the Home Screen, this screen displays the user's registered details and provides a logout option.
 
