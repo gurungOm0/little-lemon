@@ -31,7 +31,7 @@ The application features three main screens, each serving a distinct purpose:
 ### **1\. Onboarding / Login Screen**
 
 Screenshot:
-![Local image](./readme_media/onboarding_Screen.jpg)
+<img src="./readme_media/onboarding_Screen.jpg" alt="OnBoarding Screen" height="250"/>
 
 The initial screen users encounter. It's designed for new users to register their basic details.
 
@@ -44,7 +44,7 @@ The initial screen users encounter. It's designed for new users to register thei
 ### **2\. Home Screen**
 
 Screenshot:
-![Local image](./readme_media/home_Screen.jpg)
+<img src="./readme_media/home_Screen.jpg" alt="Home Screen" height="250"/>
 
 This is the central hub of the application, displaying information about the Little Lemon restaurant and its menu.
 
@@ -60,6 +60,8 @@ This is the central hub of the application, displaying information about the Lit
 ### **3\. Profile Screen**
 
 Screenshot:
+
+<img src="./readme_media/profile_Screen.jpg" alt="Profile Screen" height="250"/>
 ![Local image](./readme_media/profile_Screen.jpg)
 
 Accessible via an icon on the Home Screen, this screen displays the user's registered details and provides a logout option.
@@ -67,7 +69,7 @@ Accessible via an icon on the Home Screen, this screen displays the user's regis
 * **User Details Display:** Shows the first name, last name, and email address that the user entered during the onboarding process (retrieved from SharedPreferences).  
 * **Logout Functionality:** A dedicated logout button clears all saved login data from SharedPreferences, effectively logging the user out and returning them to the Onboarding Screen.  
 * Screen Recording:
-![Local image](./readme_media/LittleLemonScreenRec.gif)
+<img src="./readme_media/LittleLemonScreenRec.gif" alt="Home Screen" height="250"/>
 
 ## **🛠️ Setup and Installation**
 
