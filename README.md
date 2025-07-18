@@ -41,8 +41,6 @@ The initial screen users encounter. It's designed for new users to register thei
 * **User Input:** Collects the user's first name, last name, and email address.  
 * **Data Persistence:** User details are securely saved via Android's SharedPreferences to maintain login state across sessions.  
 * **Navigation:** Once logged in, the user is automatically directed to the Home Screen.  
-* Screenshot/Screen Recording: Onboarding/Login Screen  
-  (Insert screenshot or screen recording here)
 
 ### **2\. Home Screen**
 
@@ -60,8 +58,7 @@ This is the central hub of the application, displaying information about the Lit
 * **Image Display:** Menu item images are loaded and displayed efficiently using the Coil image loading library.  
 * **Filtering:** Users can filter the list of menu items based on different dish categories.  
 * **Search Functionality:** A search bar allows users to quickly find specific dishes by their names.  
-* Screenshot/Screen Recording: Home Screen with Menu List, Filters, and Search  
-  (Insert screenshot or screen recording here)
+
 
 ### **3\. Profile Screen**
 
@@ -75,7 +72,9 @@ Accessible via an icon on the Home Screen, this screen displays the user's regis
 
 * **User Details Display:** Shows the first name, last name, and email address that the user entered during the onboarding process (retrieved from SharedPreferences).  
 * **Logout Functionality:** A dedicated logout button clears all saved login data from SharedPreferences, effectively logging the user out and returning them to the Onboarding Screen.  
-* Screen Recording:
+
+
+### App Preview Screen Recording:
   <div align ="center">
     <img src="./readme_media/LittleLemonScreenRec.gif" alt="Home Screen" height="350"/>
   </div>
