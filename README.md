@@ -60,7 +60,6 @@ This is the central hub of the application, displaying information about the Lit
 ### **3\. Profile Screen**
 
 Screenshot:
-
 <img src="./readme_media/profile_Screen.jpg" alt="Profile Screen" height="350"/>
 ![Local image](./readme_media/profile_Screen.jpg)
 
@@ -69,7 +68,7 @@ Accessible via an icon on the Home Screen, this screen displays the user's regis
 * **User Details Display:** Shows the first name, last name, and email address that the user entered during the onboarding process (retrieved from SharedPreferences).  
 * **Logout Functionality:** A dedicated logout button clears all saved login data from SharedPreferences, effectively logging the user out and returning them to the Onboarding Screen.  
 * Screen Recording:
-<img src="./readme_media/LittleLemonScreenRec.gif" alt="Home Screen" height="350"/>
+ <img src="./readme_media/LittleLemonScreenRec.gif" alt="Home Screen" height="350"/>
 
 ## **🛠️ Setup and Installation**
 
