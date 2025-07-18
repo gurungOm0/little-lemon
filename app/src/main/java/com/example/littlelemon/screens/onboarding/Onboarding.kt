@@ -1,6 +1,6 @@
 package com.example.littlelemon.screens.onboarding
 
-import android.app.Activity
+
 import android.app.AlertDialog
 import android.content.Context
 import android.widget.Toast
@@ -23,8 +23,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -237,7 +235,7 @@ fun Header() {
             painter = painterResource(id = R.drawable.logo),
             contentDescription = "Little Lemon Logo",
             contentScale = ContentScale.FillHeight,
-            modifier = Modifier.height(50.dp)
+            modifier = Modifier.height(45.dp)
         )
     }
 }
