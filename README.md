@@ -30,6 +30,9 @@ The application features three main screens, each serving a distinct purpose:
 
 ### **1\. Onboarding / Login Screen**
 
+Screenshot:
+![Local image](./readme_media/onboarding_Screen.jpg)
+
 The initial screen users encounter. It's designed for new users to register their basic details.
 
 * **User Input:** Collects the user's first name, last name, and email address.  
@@ -39,6 +42,9 @@ The initial screen users encounter. It's designed for new users to register thei
   (Insert screenshot or screen recording here)
 
 ### **2\. Home Screen**
+
+Screenshot:
+![Local image](./readme_media/home_Screen.jpg)
 
 This is the central hub of the application, displaying information about the Little Lemon restaurant and its menu.
 
@@ -53,19 +59,24 @@ This is the central hub of the application, displaying information about the Lit
 
 ### **3\. Profile Screen**
 
+Screenshot:
+![Local image](./readme_media/profile_Screen.jpg)
+
 Accessible via an icon on the Home Screen, this screen displays the user's registered details and provides a logout option.
 
 * **User Details Display:** Shows the first name, last name, and email address that the user entered during the onboarding process (retrieved from SharedPreferences).  
 * **Logout Functionality:** A dedicated logout button clears all saved login data from SharedPreferences, effectively logging the user out and returning them to the Onboarding Screen.  
-* Screenshot/Screen Recording: Profile Screen  
-  (Insert screenshot or screen recording here)
+* Screen Recording:
+![Local image](./readme_media/LittleLemonScreenRec.gif)
 
 ## **🛠️ Setup and Installation**
 
 To run this project locally, ensure you have Android Studio installed. Then, clone the repository and open it. Ensure you have the latest Android SDK and Kotlin plugin installed.
 
-git clone https://github.com/gurungOm0/little-lemon.git  
-cd LittleLemon
+```
+git clone https://github.com/gurungOm0/little-lemon.git
+cd LittleLemon 
+```
 
 ## **🚀 Future Enhancements**
 
